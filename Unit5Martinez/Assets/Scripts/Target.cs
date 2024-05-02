@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Target : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class Target : MonoBehaviour
     private GameManager gameManager;
     public int pointValue;
     public ParticleSystem explosionParticle;
-
+    private AudioSource playerAudio;
+    public AudioClip hitSound;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,7 @@ public class Target : MonoBehaviour
         targetRb.AddTorque (RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
         transform.position = RandomSpawnPos();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        playerAudio = GetComponent<AudioSource>();
     }
 
     Vector3 RandomForce()
@@ -45,6 +48,8 @@ public class Target : MonoBehaviour
             Destroy(gameObject);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             gameManager.UpdateScore(pointValue);
+            playerAudio.PlayOneShot(hitSound, 1.0f);
+
         }
     }
     private void OnTriggerEnter(Collider other)
