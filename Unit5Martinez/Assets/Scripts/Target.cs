@@ -16,7 +16,7 @@ public class Target : MonoBehaviour
     public int pointValue;
     public ParticleSystem explosionParticle;
     private AudioSource playerAudio;
-    public AudioClip hitSound;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -48,14 +48,12 @@ public class Target : MonoBehaviour
             Destroy(gameObject);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             gameManager.UpdateScore(pointValue);
-            playerAudio.PlayOneShot(hitSound, 1.0f);
-
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
-        if (!gameObject.CompareTag("Bad"))
+        if (!gameObject.CompareTag("Bad") && gameManager.isGameActive)
         {
             gameManager.GameOver();
         }
