@@ -148,4 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointValue: 5
   explosionParticle: {fileID: 6601538019107920666, guid: 70a1428e5f80a4866a779ef1ab9fe521, type: 3}
-  hitSound: {fileID: 8300000, guid: b64327559ca3af049b770783e3302542, type: 3}
+  spinSound: {fileID: 8300000, guid: 11fae803de2351a4a9db8fc98a2d178f, type: 3}
